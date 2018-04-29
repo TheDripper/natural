@@ -1,0 +1,26 @@
+{% unless text_placement %}
+  {%- assign text_placement = 'below' -%}
+{% endunless %}
+{% unless zoom %}
+  {%- assign zoom = false -%}
+{% endunless %}
+{% unless full_width %}
+  {%- assign full_width = false -%}
+{% endunless %}
+{%- assign image_rollover = block.settings.image_rollover -%}
+{%- assign image = block.settings.image -%}
+
+<div class="box" style="background-image:url({{ image | img_url: "1200px" }});">
+      {% if image != blank %}
+          {% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+          {% include 'theme-rias' %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if text_placement == 'over' and block.settings.title != blank %}
+        <figcaption>
+          <h4>{{ block.settings.title | escape }}</h4>
+        </figcaption>
+      {% endif %}
+    <a href="{{ block.settings.link }}" class="{% if zoom %}zoom text-overlay{% endif %} {% if image_rollover != blank %}rollover{% endif %}"></a>
+</div>

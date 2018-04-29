@@ -1,0 +1,24 @@
+{%- assign image = section.settings.image -%}
+{% if section.settings.image != blank %}
+<div class="hero" style="background-image:url('{{ image | img_url: "2000x" }}');">
+{% else %}
+<div class="hero" style="background-image:url('{{ "dog.jpg" | asset_url }}');">
+{% endif  %}
+</div>
+{% schema %}
+{
+	"name": "Hero",
+	"settings": [
+	{
+		"type": "image_picker",
+		"id": "image",
+		"label": "Hero"
+	}
+	],
+	"presets": [{
+		"name": "Hero",
+		"category": "Image"
+	}]
+}
+{% endschema %}
+

@@ -1,9 +1,16 @@
-{%- assign image = section.settings.image -%}
-{% if section.settings.image != blank %}
-<div class="hero" style="background-image:url('{{ image | img_url: "2000x" }}');">
+{%- assign image1 = section.settings.image1 -%}
+{%- assign image2 = section.settings.image2 -%}
+{% if section.settings.image1 != blank %}
+<div class="hero" style="background-image:url('{{ image1 | img_url: "2000x" }}');" data-next="{{ image1 | img_url: "2000x" }}" data-next="{{ image2 | img_url: "2000x" }}">
 {% else %}
 <div class="hero" style="background-image:url('{{ "dog.jpg" | asset_url }}');">
 {% endif  %}
+<div id=dots>
+	<div class=dot>
+	</div>
+	<div class=dot>
+	</div>
+</div>
 </div>
 {% schema %}
 {
@@ -11,8 +18,13 @@
 	"settings": [
 	{
 		"type": "image_picker",
-		"id": "image",
-		"label": "Hero"
+		"id": "image1",
+		"label": "First Image"
+	},
+	{
+		"type": "image_picker",
+		"id": "image2",
+		"label": "Second Image"
 	}
 	],
 	"presets": [{
